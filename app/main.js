@@ -30,7 +30,7 @@ class Square {
   }
 }
 
-class board {
+class Board {
   constructor () {
     this.squares = new Array(9).fill(null).map(()=> {
       return new Square()
@@ -54,11 +54,10 @@ console.log("board", board.render())
 
 class App {
   constructor (board) {
-    this.booard = board
+    this.board = board
   }
 
-  newGame () {}
-  this.board = new Board()
-
-  document.body.appendChild(this.board.render())
+  newGame () {
+    document.body.appendChild(this.board.render())
+  }
 }
