@@ -1,10 +1,9 @@
 'use strict'
-console.log('here')
+
 class Square {
   constructor (state) {
     if (state === 'x' || state === 'o') {
       this.state = state
-      console.log(this.state)
     }
   }
 
@@ -36,28 +35,31 @@ class Board {
       return new Square()
     })
   }
-  render () {
+  render (root) {
     let div = document.createElement('div')
 
     div.id = 'board'
     div.className = 'board'
-
-    this.squares.map((s) => div.appendChild(s.render()))
-
-    return div
+    this.squares.map((s) => root.appendChild(s.render()))
   }
 }
 
 let board = new Board()
 
-console.log("board", board.render())
-
 class App {
   constructor (board) {
-    this.board = board
-  }
 
+    console.log('root', document.querySelector('#root'))
+    this.root = document.querySelector('#root')
+    console.log('thisroot', this.root)
+    this.board = new Board()
+    this.board.render(this.root)
+
+  }
   newGame () {
-    document.body.appendChild(this.board.render())
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  let app = new App()
+})
